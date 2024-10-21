@@ -1,0 +1,156 @@
+.dtr-container {
+  display: flex;
+  flex-direction: column; /* Arrange items in a column */
+  align-items: flex-start; /* Align items to the left */
+  justify-content: flex-start; /* Align items to the top */
+  padding: 20px; /* Add padding for spacing */
+  height: 100vh; /* Full viewport height */
+  margin-left: 250px; /* Adjust for the sidebar width */
+  text-align: left; /* Align text to the left */
+}
+
+.dtr-container h1 {
+  position: fixed; /* Position relative to allow positioning of the icon inside */
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-top: -.5%;
+  margin-left: 4%;
+}
+
+.icon-dtr {
+  position: fixed;
+  font-size: 30px; /* Adjust size as needed */
+  padding: 5px; /* Adjust padding as needed */
+  margin-top: -5px;
+
+}
+
+.search-label-dtr {
+  position: fixed;
+  font-size: 1.2rem; /* Font size for the label */
+  color: #333; /* Color of the label */
+  margin-top: 5.5%;
+  margin-right: -127%;
+}
+
+.date-time-container {
+  margin-top: 2%; /* Add some spacing between the welcome text and the date */
+  
+}
+
+.date-time-container p {
+  font-size: 1rem; /* Smaller font size for the date */
+  color: #000000; /* Subtle color for the date */
+  position: fixed; /* Position relative to allow positioning of the icon inside */
+}
+
+
+
+.date-picker-container {
+  position: fixed;
+  top: 13%; /* Adjust as needed */
+  right: 30%; /* Adjust as needed */
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.date-picker-input {
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #b23535;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 50%; /* Increase the width of the date picker input */
+}
+
+.table-dtr-container {
+  max-height: 500px; /* Set the maximum height for the table body container */
+  overflow-y: auto; /* Enable vertical scrolling for the table body */
+  width: 82%;
+  position: fixed;
+  margin-top: 10%;
+}
+
+.staff-dtr-table {
+  width: 100%;
+  border-collapse: collapse;
+  
+}
+
+.staff-dtr-table th,
+.staff-dtr-table td {
+  text-align: center;
+  padding: 10px;
+}
+
+.staff-dtr-table th {
+  background-color: #f4f4f4; /* Light gray background for table headers */
+  position: sticky; /* Make the header sticky */
+  top: 0; /* Stick the header to the top */
+  z-index: 1; /* Ensure the header stays above the table content */
+  border-bottom: 2px solid #ddd; /* Optional: Add a border between the header and the body */
+}
+
+.staff-dtr-table td {
+  border: 1px solid #ddd;
+}
+
+.staff-dtr-table th, .staff-dtr-table td {
+  width: 16.66%; /* Divide columns equally */
+}
+
+
+.save-dtr-button {
+  padding: 5px 10px;
+  border: none;
+  background-color: #ffc905;
+  color: rgb(0, 0, 0);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.save-dtr-button:hover {
+  background-color: #eed18d;
+}
+
+.time-container {
+  display: flex;
+  justify-content: center; /* Center the inputs */
+  align-items: center;
+  margin-bottom: 10px;
+
+}
+
+.time-input-wrapper {
+  display: flex;
+  align-items: center;
+
+}
+
+.time-input {
+  width: 30px !important;  /* Ensure width is smaller */
+  padding: 2px !important;  /* Reduce padding */
+  margin: 0 3px !important; /* Reduce space between HH and MM */
+  text-align: center !important; /* Center align the text */
+  border-radius: 5px !important;
+  border: 1px solid #ccc !important;
+  font-size: 1rem !important; /* Smaller font size */
+}
+
+
+
+.time-input-wrapper span {
+  font-size: 1.5rem; /* Larger colon for better readability */
+  padding: 0 5px;
+
+}
+
+.time-period-select {
+  padding: 5px;
+  margin-left: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  font-size: 1rem;
+  
+}
+

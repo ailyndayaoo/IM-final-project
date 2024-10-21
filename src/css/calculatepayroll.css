@@ -1,0 +1,157 @@
+.calculate-payroll-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 20px;
+  height: 100vh;
+  margin-left: 250px; /* Adjust for the sidebar width */
+  text-align: left;
+}
+
+.calculate-payroll-container h3 {
+  position: fixed;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-top: 0.25%;
+  margin-left: 3.25%;
+}
+
+.icon-calculate-payroll {
+  position: fixed;
+  font-size: 35px; /* Adjust size as needed */
+  padding: 5px; /* Adjust padding as needed */
+  margin-top: 4px;
+  margin-left: -10px;
+}
+
+.back-payroll-button {
+  position: fixed;
+  margin-top: 6%;
+  font-size: 1rem;
+}
+
+.scrollable-form-container {
+  width: 100%;
+  max-height: 85vh; /* Limit the height for scrolling */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.form-payroll-background {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 70%;
+  height: 65%;
+  max-height: 65vh; /* Set a maximum height for scrolling */
+  margin: 0 auto;
+  position: fixed;
+  top: 25%;
+  left: 58%;
+  transform: translateX(-50%);
+  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-x: hidden; /* Disable horizontal scrolling */
+}
+
+.payroll-columns {
+  display: flex; /* Use Flexbox to arrange columns */
+  width: 100%; /* Ensure full width of parent */
+}
+
+.payroll-column {
+  flex: 1; /* Each column will take up equal space */
+  padding: 10px; /* Add padding for spacing */
+  box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+.name-id-display {
+  margin-bottom: 20px; /* Add space below the name and ID section */
+  text-align: center; /* Center text for better presentation */
+}
+
+.name-id-display p {
+  margin: 0; /* Remove default margin */
+  font-size: 16px; /* Optional: adjust font size */
+}
+
+.commissions-list {
+  margin-top: 20px; /* Add some space before the commission table */
+  text-align: left;
+}
+
+.commissions-list table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.commissions-list th, .commissions-list td {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+}
+
+.commissions-list th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.commissions-list td {
+  text-align: center;
+}
+
+.week-picker {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.week-picker label {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.total-commission {
+  margin-top: 20px; /* Add space above the total commission */
+  text-align: center; /* Center the text */
+  font-size: 18px; /* Adjust font size */
+}
+
+.save-payroll-button {
+  background: linear-gradient(90deg, #ffe66d, #ffba08);
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  display: block;
+  text-align: center;
+  margin-left: 45%;
+}
+
+.save-payroll-button:hover {
+  background: linear-gradient(90deg, #ffdd57, #ff9f1c);
+}
+
+input[type="number"], input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input[readonly] {
+  background-color: #f9f9f9;
+}
+
+input[type="number"]:focus, input[type="text"]:focus {
+  border-color: #4CAF50; /* Green border on focus */
+}
+
+.total-pay-input {
+  font-weight: bold;
+  color: #333;
+}
