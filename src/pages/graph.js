@@ -3,6 +3,7 @@ import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import '../css/graph.css';
 
+// Register chart.js components
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 function Graph() {
@@ -15,13 +16,7 @@ function Graph() {
             .catch(error => console.error('Error fetching financial data:', error));
     }, []);
 
-    const months = [
-        'January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December'
-    ];
-
     const salesData = {
-        labels: months,
         datasets: [
             {
                 label: 'Sales Amount',
@@ -34,7 +29,6 @@ function Graph() {
     };
 
     const commissionData = {
-        labels: months,
         datasets: [
             {
                 label: 'Commission Amount',
@@ -45,8 +39,6 @@ function Graph() {
             },
         ],
     };
-
-   
 
     const options = {
         responsive: true,
@@ -79,8 +71,6 @@ function Graph() {
                 </div>
                 <Line data={commissionData} options={options} />
             </div>
-
-
         </div>
     );
 }
