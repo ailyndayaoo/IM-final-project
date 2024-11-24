@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import '../css/payrollfinal.css';
 
 const PayrollFinal = () => {
-    const [startDate, setStartDate] = useState(new Date());
     const [isDropdownVisible, setDropdownVisible] = useState(false);
     const [staffData, setStaffData] = useState([]); // State to hold staff data
     const navigate = useNavigate();
@@ -15,22 +14,29 @@ const PayrollFinal = () => {
     // Function to fetch staff data from the API
     const fetchStaffData = async () => {
         try {
-            const response = await fetch('https://vynceianoani.helioho.st/getstaff.php');
+            // Retrieve the branch from local storage
+            const branch = localStorage.getItem('selectedBranch');
+    
+            // Pass the branch as a query parameter in the API request
+            const response = await fetch(`https://vynceianoani.helioho.st/getstaff.php?branch=${encodeURIComponent(branch)}`);
             const data = await response.json();
+    
+            // Update state with the fetched data
             setStaffData(data);
         } catch (error) {
             console.error('Error fetching staff data:', error);
         }
     };
+    
 
     // Fetch staff data on component mount
     useEffect(() => {
         fetchStaffData();
     }, []);
 
-    const handleButtonClick = (staffID, name) => {
+    const handleButtonClick = (StaffID, name) => {
         navigate('/home/calculatepayroll', { 
-            state: { staffID, name }  // Pass the staffID and name as state
+            state: { StaffID, name }  // Pass the staffID and name as state
         });
     };
 
@@ -45,10 +51,8 @@ const PayrollFinal = () => {
     return (
         <div className="payrollfinal-page">
             <div className="payrollfinal-container">
-                <FontAwesomeIcon icon={faMoneyCheckDollar} className="icon-payroll" beat />
+                <FontAwesomeIcon icon={faMoneyCheckDollar} className="icon-payrollfinal" beat />
                 <h1>Payroll</h1>
-                <p1>Pay Date</p1>
-                {/* Profile container */}
                 <div className="profile2-container">
                     <i className="fas fa-user profile-icon"></i>
                     <p className="profile2-label" onClick={handleProfileClick}>
@@ -64,13 +68,7 @@ const PayrollFinal = () => {
                     )}
                 </div>
 
-                <DatePicker
-                    selected={startDate}
-                    onChange={(date) => setStartDate(date)}
-                    dateFormat="MMMM d, yyyy"
-                    className="date-picker-payrollfinal"
-                    placeholderText="Select a date"
-                />
+               
                 
                 <div className="button-payrollfinal-container">
                     {staffData.length > 0 ? (

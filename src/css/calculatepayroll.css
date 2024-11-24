@@ -107,6 +107,7 @@
 }
 
 .week-picker label {
+  margin-top: 2%;
   font-size: 1.2rem;
   margin-bottom: 5px;
 }
@@ -154,4 +155,10 @@ input[type="number"]:focus, input[type="text"]:focus {
 .total-pay-input {
   font-weight: bold;
   color: #333;
+}
+
+.paydate-container p1 {
+  position: fixed;
+  font-size: 1.25rem;
+  margin-top: -2%;
 }

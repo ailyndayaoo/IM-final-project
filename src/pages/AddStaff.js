@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import '../css/addstaff.css';
-import { faClipboardUser } from '@fortawesome/free-solid-svg-icons'; // Use solid icons set
+import { faClipboardUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function AddStaff({ isEdit = false, refreshStaffList }) {
@@ -15,16 +15,27 @@ function AddStaff({ isEdit = false, refreshStaffList }) {
     Email: '',
     Sex: '',
     ContactNumber: '',
-    StaffID: ''
+    Branch: '', // Add branch to staffData
   });
+
+  // Fetch branch name from local storage
+  useEffect(() => {
+    const branch = localStorage.getItem('selectedBranch');
+    if (branch) {
+      setStaffData((prevData) => ({
+        ...prevData,
+        Branch: branch,
+      }));
+    }
+  }, []);
 
   // Fetch staff data if in edit mode
   useEffect(() => {
     if (isEdit && staffID) {
       fetch(`http://vynceianoani.helioho.st/getstaff.php?StaffID=${staffID}`)
-        .then(response => response.json())
-        .then(data => setStaffData(data))
-        .catch(error => console.error('Error fetching staff data:', error));
+        .then((response) => response.json())
+        .then((data) => setStaffData(data))
+        .catch((error) => console.error('Error fetching staff data:', error));
     }
   }, [isEdit, staffID]);
 
@@ -32,7 +43,7 @@ function AddStaff({ isEdit = false, refreshStaffList }) {
     const { name, value } = e.target;
     setStaffData({
       ...staffData,
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -41,27 +52,26 @@ function AddStaff({ isEdit = false, refreshStaffList }) {
   };
 
   const validateForm = () => {
-    const { Fname, Lname, Address, Email, Sex, ContactNumber } = staffData;
-    const phonePattern = /^[0-9]{11}$/; // Regex to allow only numbers with exactly 11 digits
-  
-    if (!Fname || !Lname || !Address || !Email || !Sex || !ContactNumber) {
+    const { Fname, Lname, Address, Email, Sex, ContactNumber, Branch } = staffData;
+    const phonePattern = /^[0-9]{11}$/;
+
+    if (!Fname || !Lname || !Address || !Email || !Sex || !ContactNumber || !Branch) {
       alert('Please fill out all required fields.');
       return false;
     }
-  
+
     if (!Email.includes('@gmail.com')) {
       alert('Please enter a valid Gmail address.');
       return false;
     }
-  
+
     if (!phonePattern.test(ContactNumber)) {
       alert('Please input a correct phone number.');
       return false;
     }
-  
+
     return true;
   };
-  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -70,23 +80,21 @@ function AddStaff({ isEdit = false, refreshStaffList }) {
       return;
     }
 
-    const url = isEdit ? 'http://vynceianoani.helioho.st/editstaff.php' : 'http://vynceianoani.helioho.st/addstaff.php';
-    const dataToSend = isEdit
-      ? { ...staffData, StaffID: staffID }
-      : staffData;
+    const url = isEdit
+      ? 'http://vynceianoani.helioho.st/editstaff.php'
+      : 'http://vynceianoani.helioho.st/addstaff.php';
 
     fetch(url, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(dataToSend)
+      body: JSON.stringify(staffData),
     })
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         if (data.message) {
           alert(data.message);
-          // Refresh the staff list after adding/editing a staff member
           if (typeof refreshStaffList === 'function') {
             refreshStaffList();
           }
@@ -95,7 +103,7 @@ function AddStaff({ isEdit = false, refreshStaffList }) {
           alert(data.error || 'An error occurred');
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('There was an error saving the staff!', error);
       });
   };
@@ -106,15 +114,17 @@ function AddStaff({ isEdit = false, refreshStaffList }) {
         <button className="back-button" onClick={handleBackClick}>
           &lt; Back
         </button>
-        <h1>{isEdit ? 'Edit Staff' : 'Add a New Staff'}
+        <h1>
+          {isEdit ? 'Edit Staff' : 'Add a New Staff'}
           <FontAwesomeIcon icon={faClipboardUser} className="icon-add" beat />
         </h1>
-        <span className="new-staff-title">{isEdit ? 'Edit staff details' : 'Create account for a new staff'}</span>
+        <span className="new-staff-title">
+          {isEdit ? 'Edit staff details' : 'Create account for a new staff'}
+        </span>
       </div>
 
       <form onSubmit={handleSubmit} className="form-background">
         <div className="form-container">
-         
           <div className="scrollable-section">
             <div className="input-group input-two-column">
               <div className="input-item">
@@ -190,17 +200,28 @@ function AddStaff({ isEdit = false, refreshStaffList }) {
                 className="input-field"
                 value={staffData.ContactNumber}
                 onChange={handleInputChange}
-                pattern="[0-9]*" // Allow only numbers
-                maxLength="11" // Limit the input to 11 characters
+                pattern="[0-9]*"
+                maxLength="11"
+              />
+            </div>
+
+            {/* Branch Input */}
+            <div className="input-group">
+              <label className="input-label">Branch</label>
+              <input
+                type="text"
+                name="Branch"
+                placeholder="Enter Branch"
+                className="input-field"
+                value={staffData.Branch}
+                onChange={handleInputChange}
+                readOnly={!!localStorage.getItem('selectedBranch')} // Make readonly if branch is from localStorage
               />
             </div>
           </div>
         </div>
 
-        <button 
-          className="submit-add-button" 
-          type="submit"
-        >
+        <button className="submit-add-button" type="submit">
           {isEdit ? 'Save Changes' : 'Add Staff'}
         </button>
       </form>

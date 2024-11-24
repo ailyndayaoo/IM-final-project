@@ -89,3 +89,9 @@
   margin-left: 15%;
   width: 70%;
 }
+
+.choose-branch h4p {
+  text-align: center;
+  font-size: 24px; /* Adjust font size as needed */
+  margin: 0; /* Optional: remove default margin */
+}

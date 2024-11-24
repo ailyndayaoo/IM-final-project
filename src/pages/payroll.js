@@ -15,17 +15,22 @@ function Payroll() {
   useEffect(() => {
     const fetchPayrollData = async () => {
       try {
-        const response = await fetch('https://vynceianoani.helioho.st/fetchPayrollData.php');
+        // Retrieve the branch from local storage
+        const branch = localStorage.getItem('selectedBranch');
+        
+        // Pass the branch as a query parameter to the API
+        const response = await fetch(`https://vynceianoani.helioho.st/fetchPayrollData.php?branch=${encodeURIComponent(branch)}`);
         const data = await response.json();
+        
         setPayrollData(data);
       } catch (error) {
         console.error('Error fetching payroll data:', error);
       }
     };
-
+  
     fetchPayrollData();
   }, []);
-
+  
   const handleProfileClick = () => {
     setIsDropdownVisible(!isDropdownVisible);
   };

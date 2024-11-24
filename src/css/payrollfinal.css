@@ -5,77 +5,99 @@
         justify-content: flex-start;
         padding: 20px;
         height: 100vh;
-        margin-left: 250px; /* Adjust for the sidebar width */
+        margin-left: 250px;
+        /* Adjust for the sidebar width */
         text-align: left;
     }
-    
+
     .payrollfinal-container h1 {
         position: fixed;
         font-size: 2.5rem;
         font-weight: bold;
-        margin-top: .25%;
+        margin-top: -.5%;
         margin-left: 3.25%;
     }
 
-    .payrollfinal-container p1 {
+   
+
+    .icon-payrollfinal {
         position: fixed;
-        font-size: 1.25rem;
-        margin-top: 9%;
-    }
-    
-    .payrollfinal-container .date-picker-payrollfinal {
-        margin-top: 120%; /* Space between the heading and date picker */
-        padding: 10px; /* Padding for the date picker */
-        border: 1px solid #ccc; /* Border for the date picker */
-        border-radius: 4px; /* Rounded corners */
-        font-size: 1rem; /* Font size */
-        width: 150px; /* Increased width of the date picker */
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for better appearance */
+        font-size: 35px;
+        /* Adjust size as needed */
+        padding: 5px;
+        /* Adjust padding as needed */
+        margin-top: 4-px;
+        margin-left: -10px;
     }
 
+
     .button-payrollfinal-container {
-        margin-top: 20px; /* Space between date picker and button boxes */
+        margin-top: 10%;
+        /* Space between date picker and button boxes */
         display: grid;
-        grid-template-columns: repeat(5, 1fr); /* 5 columns, each taking equal width */
-        gap: 10px; /* Optional gap between columns */
-        width: 100%; /* Ensure the container takes the full width */
+        grid-template-columns: repeat(5, 1fr);
+        /* 5 columns, each taking equal width */
+        gap: 10px;
+        /* Optional gap between columns */
+        width: 100%;
+        /* Ensure the container takes the full width */
     }
 
     .button-box {
-        padding: 15px; /* Padding for each box */
-        border: 1px solid #ccc; /* Border for each box */
-        border-radius: 4px; /* Rounded corners */
+        padding: 15px;
+        /* Padding for each box */
+        border: 1px solid #ccc;
+        /* Border for each box */
+        border-radius: 4px;
+        /* Rounded corners */
         display: flex;
-        flex-direction: column; /* Arrange elements vertically */
-        align-items: center; /* Center items horizontally */
+        flex-direction: column;
+        /* Arrange elements vertically */
+        align-items: center;
+        /* Center items horizontally */
     }
 
     .info-container {
-        text-align: center; /* Center the text */
-        margin-bottom: 10px; /* Space between the info and the button */
+        text-align: center;
+        /* Center the text */
+        margin-bottom: 10px;
+        /* Space between the info and the button */
     }
 
     .name {
-        font-weight: bold; /* Bold for the name */
-        font-size: 0.9rem; /* Smaller font size for the name */
+        font-weight: bold;
+        /* Bold for the name */
+        font-size: 0.9rem;
+        /* Smaller font size for the name */
     }
 
     .id {
-        font-size: 0.8rem; /* Smaller font size for the ID */
-        color: #555; /* Gray color for the ID */
+        font-size: 0.8rem;
+        /* Smaller font size for the ID */
+        color: #555;
+        /* Gray color for the ID */
     }
 
     .action-button {
-        padding: 10px; /* Padding for the button */
-        font-size: 1rem; /* Font size */
-        border: none; /* Remove default border */
-        border-radius: 4px; /* Rounded corners for the button */
+        padding: 10px;
+        /* Padding for the button */
+        font-size: 1rem;
+        /* Font size */
+        border: none;
+        /* Remove default border */
+        border-radius: 4px;
+        /* Rounded corners for the button */
         background: linear-gradient(90deg, #ffe66d, #ffba08);
-        color: black; /* Button text color */
-        cursor: pointer; /* Cursor change on hover */
-        width: 100%; /* Make the button take the full width of the box */
-        margin-top: 10px; /* Space between the name/id and button */
+        color: black;
+        /* Button text color */
+        cursor: pointer;
+        /* Cursor change on hover */
+        width: 100%;
+        /* Make the button take the full width of the box */
+        margin-top: 10px;
+        /* Space between the name/id and button */
     }
 
     .action-button:hover {
-        background: linear-gradient(90deg, #ffdd57, #ff9f1c);}
+        background: linear-gradient(90deg, #ffdd57, #ff9f1c);
+    }

@@ -13,8 +13,11 @@ function Dtr() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch employees from API
-    fetch('https://vynceianoani.helioho.st/active_staff.php')
+    // Retrieve selected branch from local storage
+    const selectedBranch = localStorage.getItem('selectedBranch');
+    
+    // Fetch employees from API and filter by branch
+    fetch('https://vynceianoani.helioho.st/active_staff.php?branch=' + selectedBranch)
       .then((response) => response.json())
       .then((data) => setEmployees(data))
       .catch((error) => console.error('Error fetching employees:', error));
@@ -95,11 +98,8 @@ function Dtr() {
     );
   };
 
-  
-
   return (
     <div className="dtr-page">
-      
       <div className="dtr-container">
         <FontAwesomeIcon icon={faUserGroup} className="icon-dtr" beat />
         <h1>DTR</h1>
@@ -117,19 +117,19 @@ function Dtr() {
           />
         </div>
         <div className="profile2-container">
-                            <i className="fas fa-user profile-icon"></i>
-                            <p className="profile2-label" onClick={handleProfileClick}>
-                                Admin
-                                <i className="fas fa-chevron-down arrow-icon"></i>
-                            </p>
-                            {isDropdownVisible && (
-                                <div className="dropdown-menu">
-                                    <p className="dropdown-item" onClick={handleLogout}>
-                                        Logout <i className="fa-solid fa-right-from-bracket logout-icon"></i>
-                                    </p>
-                                </div>
-                            )}
-                        </div>
+          <i className="fas fa-user profile-icon"></i>
+          <p className="profile2-label" onClick={handleProfileClick}>
+            Admin
+            <i className="fas fa-chevron-down arrow-icon"></i>
+          </p>
+          {isDropdownVisible && (
+            <div className="dropdown-menu">
+              <p className="dropdown-item" onClick={handleLogout}>
+                Logout <i className="fa-solid fa-right-from-bracket logout-icon"></i>
+              </p>
+            </div>
+          )}
+        </div>
         <div className="table-dtr-container">
           <table className="staff-dtr-table">
             <thead>
@@ -225,7 +225,6 @@ function Dtr() {
         </div>
       </div>
     </div>
-    
   );
 }
 

@@ -8,10 +8,11 @@ import AddStaff from './AddStaff';
 import EditStaff from './EditStaff';
 import CalculatePayroll from './calculatepayroll';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserGroup, faSackDollar, faMoneyCheckDollar } from '@fortawesome/free-solid-svg-icons';
+import { faUserGroup, faSackDollar, faMoneyCheckDollar, faList } from '@fortawesome/free-solid-svg-icons';
 import CalculateCommission from './CalculateCommission';
 import PayrollFinal from './payrollfinal';
-import Payroll from './payroll';
+import Summary from './Summary';
+import Graph from './graph';
 
 function Home() {
     const [selectedBranch, setSelectedBranch] = useState('');
@@ -26,22 +27,21 @@ function Home() {
         const branch = localStorage.getItem('selectedBranch');
         if (branch) {
             setSelectedBranch(branch);
-            fetchStaffData(branch); // Fetch staff data when a branch is selected
+            fetchStaffData(branch); // Fetch staff data for selected branch
         }
     }, []);
-
-    // Fetch staff data based on the selected branch
+    
     const fetchStaffData = (branch) => {
         const url = `https://vynceianoani.helioho.st/getstaff.php${branch ? `?branch=${encodeURIComponent(branch)}` : ''}`;
         fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                localStorage.setItem('staffList', JSON.stringify(data));
+            .then((response) => response.json())
+            .then((data) => {
+                localStorage.setItem('staffList', JSON.stringify(data)); // Cache the staff list
                 setStaffList(data);
             })
-            .catch(error => console.error('Error fetching staff data:', error));
+            .catch((error) => console.error('Error fetching staff data:', error));
     };
-
+    
     // Format the date to be displayed
     const formatDate = () => {
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -133,6 +133,12 @@ function Home() {
                             <FontAwesomeIcon icon={faMoneyCheckDollar} className="icon-sidebar" /> Payroll
                         </NavLink>
                     </li>
+                    <li>
+                        <NavLink to="summary" className={({ isActive }) => (isActive ? 'active' : '')}>
+                            <FontAwesomeIcon icon={faList} className="icon-sidebar" /> Summary
+                        </NavLink>
+                    </li>
+
                 </ul>
             </div>
 
@@ -211,22 +217,23 @@ function Home() {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {filteredStaffList  .map((staff) => (
-                                                <tr key={staff.StaffID}>
-                                                    <td>{staff.StaffID}</td>
-                                                    <td>{staff.Fname}</td>
-                                                    <td>{staff.Lname}</td>
-                                                    <td>{staff.Address}</td>
-                                                    <td>{staff.Sex}</td>
-                                                    <td>{staff.Email}</td>
-                                                    <td>{staff.ContactNumber}</td>
-                                                    <td>
-                                                        <button onClick={() => handleEditStaff(staff.StaffID)}>Edit</button>
-                                                        <button onClick={() => handleRemoveStaff(staff.StaffID)}>Remove</button>
-                                                    </td>
-                                                </tr>
-                                            ))}
-                                        </tbody>
+    {filteredStaffList.map((staff) => (
+        <tr key={staff.StaffID}>
+            <td>{staff.StaffID}</td>
+            <td>{staff.Fname}</td>
+            <td>{staff.Lname}</td>
+            <td>{staff.Address}</td>
+            <td>{staff.Sex}</td>
+            <td>{staff.Email}</td>
+            <td>{staff.ContactNumber}</td>
+            <td>
+                <button onClick={() => handleEditStaff(staff.StaffID)}>Edit</button>
+                <button onClick={() => handleRemoveStaff(staff.StaffID)}>Remove</button>
+            </td>
+        </tr>
+    ))}
+</tbody>
+
                                     </table>
                                 </div>
                             </div>
@@ -241,6 +248,9 @@ function Home() {
                     <Route path="edit/:staffID" element={<EditStaff />} />
                     <Route path="calculatepayroll" element={<CalculatePayroll />} />
                     <Route path="calculatecommission" element={<CalculateCommission />} />
+                    <Route path="Summary" element={<Summary />} />
+                    <Route path="/Summary/graph" element={<Graph />} />
+
 
                 </Routes>
             </div>

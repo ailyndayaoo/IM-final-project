@@ -20,19 +20,24 @@ function Commission() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Fetch the staff data from the API
-        fetch('https://vynceianoani.helioho.st/getstaff.php')
-            .then(response => response.json())
-            .then(data => setEmployees(data))
-            .catch(error => console.error('Error fetching staff data:', error));
-
-        // Fetch the commission data from the API
-        fetch('https://vynceianoani.helioho.st/getCommissions.php')
-            .then(response => response.json())
-            .then(data => setCommissionData(data))
-            .catch(error => console.error('Error fetching commissions:', error));
+        const storedBranch = localStorage.getItem('selectedBranch'); // Retrieve stored branch from local storage
+    
+        if (storedBranch) {
+            // Fetch the staff data with the branch parameter
+            fetch(`https://vynceianoani.helioho.st/getstaff2.php?branch=${storedBranch}`)
+                .then(response => response.json())
+                .then(data => setEmployees(data))
+                .catch(error => console.error('Error fetching staff data:', error));
+    
+            // Fetch the commission data with the branch parameter
+            fetch(`https://vynceianoani.helioho.st/getCommissions.php?branch=${storedBranch}`)
+                .then(response => response.json())
+                .then(data => setCommissionData(data))
+                .catch(error => console.error('Error fetching commissions:', error));
+        } else {
+            console.error('No branch found in local storage.');
+        }
     }, []);
-
     const handleProfileClick = () => {
         setIsDropdownVisible(!isDropdownVisible);
     };
@@ -43,7 +48,9 @@ function Commission() {
 
     const handleEmployeeSelect = (employee) => {
         setSelectedEmployee(employee);
-        fetchAvailableDates(employee.StaffID); // Fetch available dates when an employee is selected
+        if (employee && employee.StaffID) {
+            fetchAvailableDates(employee.StaffID); // Fetch available dates when an employee is selected
+        }
     };
 
     const fetchAvailableDates = (staffID) => {
@@ -109,10 +116,11 @@ function Commission() {
 
     // Filter commission data based on search input
     const filteredCommissionData = commissionData.filter(item => {
-        const nameMatches = item.FullName.toLowerCase().includes(searchTerm.toLowerCase());
+        const nameMatches = item.FullName && item.FullName.toLowerCase().includes(searchTerm.toLowerCase());
         const dateMatches = item.Date && item.Date.includes(searchTerm); // Match date as a substring
         return nameMatches || dateMatches; // Return true if either matches
     });
+
 
     return (
         <div className="commission-page">
@@ -120,18 +128,16 @@ function Commission() {
                 <FontAwesomeIcon icon={faSackDollar} className="icon-commission" beat />
                 <h1>Commission</h1>
 
-                {/* Profile Section */}
-                <div className="profile-commission-container">
+                <div className="profile2-container">
                     <i className="fas fa-user profile-icon"></i>
-                    <p className="profile-commission-label" onClick={handleProfileClick}>
+                    <p className="profile2-label" onClick={handleProfileClick}>
                         Admin
-                        <i className="fas fa-chevron-down arrow-commission-icon"></i>
+                        <i className="fas fa-chevron-down arrow-icon"></i>
                     </p>
                     {isDropdownVisible && (
-                        <div className="dropdown-commission-menu">
-                            <p className="dropdown-commission-item" onClick={handleLogout}>
-                                Logout
-                                <i className="fa-solid fa-right-from-bracket logout-icon"></i>
+                        <div className="dropdown-menu">
+                            <p className="dropdown-item" onClick={handleLogout}>
+                                Logout <i className="fa-solid fa-right-from-bracket logout-icon"></i>
                             </p>
                         </div>
                     )}
@@ -139,7 +145,7 @@ function Commission() {
 
                 {/* Search Bar */}
                 <div className="search-bar-commission-container">
-                <label>Search:</label>
+                    <label>Search:</label>
                     <input
                         type="text"
                         placeholder="search..."
@@ -153,13 +159,19 @@ function Commission() {
                     <div>
                         <label>Select Employee:</label>
                         <select
-                            value={selectedEmployee ? selectedEmployee.StaffID : ''}
-                            onChange={(e) => handleEmployeeSelect(employees.find(emp => emp.StaffID === e.target.value))}
+                            value={selectedEmployee ? `${selectedEmployee.Fname} ${selectedEmployee.Lname}` : ''} // Display full name if selected
+                            onChange={(e) => {
+                                const fullName = e.target.value; // Get selected full name
+                                const selectedEmp = employees.find(
+                                    (employee) => `${employee.Fname} ${employee.Lname}` === fullName // Match full name to employee object
+                                );
+                                handleEmployeeSelect(selectedEmp); // Pass the selected employee object
+                            }}
                             className="employee-select"
                         >
                             <option value="">Select an employee</option>
-                            {employees.map(employee => (
-                                <option key={employee.StaffID} value={employee.StaffID}>
+                            {employees.map((employee) => (
+                                <option key={employee.StaffID} value={`${employee.Fname} ${employee.Lname}`}>
                                     {employee.Fname} {employee.Lname}
                                 </option>
                             ))}
@@ -169,7 +181,7 @@ function Commission() {
                     <div>
                         <label>Select Date:</label>
                         <select
-                            value={selectedDate ? selectedDate.toISOString().split('T')[0] : ''}
+                            value={selectedDate ? selectedDate.toISOString().split('T')[0] : ''} // Prevent undefined value
                             onChange={(e) => {
                                 const dateStr = e.target.value;
                                 const dateObj = new Date(dateStr);
