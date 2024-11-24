@@ -41,8 +41,8 @@
 .icon-add {
   position: fixed;
   margin-left: 1%;
-  font-size: 35px; /* Adjust size as needed */
-  padding: 5px; /* Adjust padding as needed */
+  font-size: 35px;
+  padding: 5px;
 
 }
 
@@ -83,7 +83,7 @@
   top: 25%;
   left: 55%;
   transform: translateX(-50%);
-  overflow: hidden; /* Hide any overflow by default */
+  overflow: hidden;
 }
 
 .form-container {
@@ -94,14 +94,14 @@
 }
 
 .scrollable-section {
-  max-height: 400px; /* Adjust the height as needed */
-  overflow-y: auto; /* Enable vertical scrolling */
-  overflow-x: hidden; /* Disable horizontal scrolling */
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
   width: 100%;
 }
 
 .input-group {
-  margin: 0; /* Remove margin to ensure consistent scrolling */
+  margin: 0;
   display: flex;
   flex-direction: column;
   width: 70%;
@@ -109,11 +109,12 @@
 }
 
 .input-item {
-  margin: 0; /* Remove margin to ensure consistent scrolling */
+  margin: 0;
   display: flex;
   flex-direction: column;
   width: 100%;
 }
+
 .input-label {
   margin-bottom: 8px;
   font-weight: bold;
@@ -129,7 +130,10 @@
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-input[type="txt"], input[type="email"], input[type="tel"], select.input-field {
+input[type="txt"],
+input[type="email"],
+input[type="tel"],
+select.input-field {
   padding: 12px;
   border: 1px solid #ddd;
   border-radius: 6px;
@@ -145,4 +149,3 @@ select.input-field {
   width: 100%;
   margin-bottom: 12px;
 }
-

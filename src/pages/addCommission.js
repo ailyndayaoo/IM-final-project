@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-/*import '../css/addCommission.css';*/
 
 function AddCommission() {
     const [employees, setEmployees] = useState([]);
@@ -16,8 +15,7 @@ function AddCommission() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Fetch employees from your backend (replace with actual API call)
-        fetch('https://vynceianoani.helioho.st/getstaff.php') // Replace with your actual API endpoint
+        fetch('https://vynceianoani.helioho.st/getstaff.php') 
             .then(response => response.json())
             .then(data => setEmployees(data))
             .catch(error => console.error('Error fetching employees:', error));
@@ -33,14 +31,12 @@ function AddCommission() {
 
     const handleSalesChange = (e) => {
         const sales = e.target.value;
-        const commission = sales * 0.4; // Calculate 40% commission
+        const commission = sales * 0.4; 
         setCommissionDetails({ ...commissionDetails, sales, commission });
     };
 
     const handleAddCommission = () => {
-        // Handle commission addition logic (e.g., send data to backend)
         console.log('Adding commission for:', selectedEmployee, commissionDetails);
-        // Reset form or redirect after saving
         navigate('/home/commission');
     };
 

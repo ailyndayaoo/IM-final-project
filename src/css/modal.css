@@ -1,4 +1,3 @@
-/* src/css/modal.css */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -23,7 +22,7 @@
 }
 
 .modal-content input {
-    width: 100%; /* Full width of the modal content */
+    width: 100%; 
     padding: 10px;
     margin-top: 10px;
     border: 1px solid #ccc;
@@ -33,12 +32,11 @@
 
 }
 
-/* Adjusting placeholder appearance */
 .modal-content input::placeholder {
-    color: #888; /* Placeholder color */
-    padding-left: 10px; /* Adds space to the left */
-    font-size: 16px; /* Adjust font size if needed */
-    width: 80%; /* Simulates a narrower placeholder by adjusting text appearance */
+    color: #888; 
+    padding-left: 10px; 
+    font-size: 16px; 
+    width: 80%; 
     
 }
 

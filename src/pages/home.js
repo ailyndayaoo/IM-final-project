@@ -18,53 +18,46 @@ function Home() {
     const [selectedBranch, setSelectedBranch] = useState('');
     const [isDropdownVisible, setIsDropdownVisible] = useState(false);
     const [staffList, setStaffList] = useState([]);
-    const [searchQuery, setSearchQuery] = useState(''); // New state for the search query
+    const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
 
-    // Fetch branch and staff data from localStorage
     useEffect(() => {
         const branch = localStorage.getItem('selectedBranch');
         if (branch) {
             setSelectedBranch(branch);
-            fetchStaffData(branch); // Fetch staff data for selected branch
+            fetchStaffData(branch);
         }
     }, []);
-    
+
     const fetchStaffData = (branch) => {
         const url = `https://vynceianoani.helioho.st/getstaff.php${branch ? `?branch=${encodeURIComponent(branch)}` : ''}`;
         fetch(url)
             .then((response) => response.json())
             .then((data) => {
-                localStorage.setItem('staffList', JSON.stringify(data)); // Cache the staff list
+                localStorage.setItem('staffList', JSON.stringify(data));
                 setStaffList(data);
             })
             .catch((error) => console.error('Error fetching staff data:', error));
     };
-    
-    // Format the date to be displayed
+
     const formatDate = () => {
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         return new Date().toLocaleDateString('en-US', options);
     };
 
-    // Toggle profile dropdown
     const handleProfileClick = () => setIsDropdownVisible(!isDropdownVisible);
 
-    // Logout and navigate to login page
     const handleLogout = () => navigate('/');
 
-    // Navigate to the add staff page
     const handleAddStaff = () => navigate('/home/staff/add-new-staff');
 
-    // Handle editing a staff member
     const handleEditStaff = (staffID) => {
-        localStorage.setItem('selectedStaffID', staffID); // Save staffID to localStorage
-        navigate(`/home/edit/${staffID}`); // Navigate to edit page with staffID
+        localStorage.setItem('selectedStaffID', staffID);
+        navigate(`/home/edit/${staffID}`);
     };
-    
 
-    // Handle setting a staff member as inactive
+
     const handleRemoveStaff = (staffID) => {
         if (window.confirm('Are you sure you want to set this staff member as inactive?')) {
             fetch('https://vynceianoani.helioho.st/setinactive.php', {
@@ -77,14 +70,12 @@ function Home() {
                 .then(response => response.json())
                 .then(data => {
                     if (data.status === 'success') {
-                        // Update the local state
                         const updatedStaffList = staffList.filter(staff => staff.StaffID !== staffID);
                         localStorage.setItem('staffList', JSON.stringify(updatedStaffList));
                         setStaffList(updatedStaffList);
-                        
-                        // Trigger re-fetch in Commission component
-                        fetchStaffData(); // Ensure this function is called in Commission to update staff list
-                        
+
+                        fetchStaffData();
+
                         alert('Staff member set as inactive successfully.');
                     } else {
                         alert('Error setting staff member as inactive: ' + data.message);
@@ -93,16 +84,14 @@ function Home() {
                 .catch(error => console.error('Error setting staff member as inactive:', error));
         }
     };
-    
 
-    // Check for current page routes
+
     const isStaffPage = location.pathname.startsWith('/home/staff');
     const isAddStaffPage = location.pathname === '/home/staff/add-new-staff';
     const isEditStaffPage = location.pathname.startsWith('/editstaff');
 
-    // Filter staff based on the search query
-    const filteredStaffList = staffList.filter(staff => 
-        staff.Fname.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    const filteredStaffList = staffList.filter(staff =>
+        staff.Fname.toLowerCase().includes(searchQuery.toLowerCase()) ||
         staff.Lname.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
@@ -154,7 +143,7 @@ function Home() {
                                         className="search-bar-ble"
                                         placeholder="Search Staff"
                                         value={searchQuery}
-                                        onChange={(e) => setSearchQuery(e.target.value)} // Update search query
+                                        onChange={(e) => setSearchQuery(e.target.value)}
                                     />
                                     <i className="fas fa-search search-icon"></i>
                                 </div>
@@ -217,22 +206,22 @@ function Home() {
                                             </tr>
                                         </thead>
                                         <tbody>
-    {filteredStaffList.map((staff) => (
-        <tr key={staff.StaffID}>
-            <td>{staff.StaffID}</td>
-            <td>{staff.Fname}</td>
-            <td>{staff.Lname}</td>
-            <td>{staff.Address}</td>
-            <td>{staff.Sex}</td>
-            <td>{staff.Email}</td>
-            <td>{staff.ContactNumber}</td>
-            <td>
-                <button onClick={() => handleEditStaff(staff.StaffID)}>Edit</button>
-                <button onClick={() => handleRemoveStaff(staff.StaffID)}>Remove</button>
-            </td>
-        </tr>
-    ))}
-</tbody>
+                                            {filteredStaffList.map((staff) => (
+                                                <tr key={staff.StaffID}>
+                                                    <td>{staff.StaffID}</td>
+                                                    <td>{staff.Fname}</td>
+                                                    <td>{staff.Lname}</td>
+                                                    <td>{staff.Address}</td>
+                                                    <td>{staff.Sex}</td>
+                                                    <td>{staff.Email}</td>
+                                                    <td>{staff.ContactNumber}</td>
+                                                    <td>
+                                                        <button onClick={() => handleEditStaff(staff.StaffID)}>Edit</button>
+                                                        <button onClick={() => handleRemoveStaff(staff.StaffID)}>Remove</button>
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
 
                                     </table>
                                 </div>

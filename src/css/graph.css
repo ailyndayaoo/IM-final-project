@@ -1,9 +1,8 @@
-/* graph.css */
 body {
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow-y: auto; /* Enables vertical scrolling */
+    overflow-y: auto; 
 }
 
 .graph-container {
@@ -11,7 +10,7 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    padding: 20px; /* Adds padding around the container */
+    padding: 20px; 
 }
 
 h1 {
@@ -26,14 +25,13 @@ h1 {
 }
 
 .chart-wrapper {
-    width: 80%; /* Adjust the width of the graph */
-    height: 300px; /* Adjust the height of the graph */
-    margin-bottom: 40px; /* Space between each graph */
+    width: 80%;
+    height: 300px;
+    margin-bottom: 40px;
     margin-left: 45%;
     margin-top: 5%;
 }
 
-/* Optional: To ensure there's no unnecessary space at the bottom */
 html, body {
     height: 100%;
 }

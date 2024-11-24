@@ -69,7 +69,7 @@ function CalculatePayroll() {
       };
     });
   
-    console.log("Weekly Commissions:", filteredCommissions); // Debugging
+    console.log("Weekly Commissions:", filteredCommissions); 
     setWeeklyCommissions(filteredCommissions);
   };
   
@@ -100,7 +100,7 @@ function CalculatePayroll() {
       Allowance: parseFloat(payrollData.allowance || 0),
       Debt: parseFloat(payrollData.debt || 0),
       Total: totalPay.toFixed(2),
-      ReasonDebt: payrollData.reasonDebt || '', // Add ReasonDebt here
+      ReasonDebt: payrollData.reasonDebt || '', 
     };
 
     try {
@@ -215,7 +215,7 @@ function CalculatePayroll() {
             </div>
 
             <div className="payroll-column">
-              <label htmlFor="reasonDebt">Reason for Debt:</label>
+              <label htmlFor="reasonDebt">Type of Debt:</label>
               <input
                 type="text"
                 id="reasonDebt"

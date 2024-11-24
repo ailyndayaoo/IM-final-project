@@ -1,8 +1,6 @@
-// In your Express.js app
 app.post('/remove-staff', (req, res) => {
     const { staffID } = req.body;
 
-    // Update query to mark staff as removed in the database
     const query = 'UPDATE staff SET removed = 1 WHERE StaffID = ?';
     
     db.query(query, [staffID], (err, results) => {

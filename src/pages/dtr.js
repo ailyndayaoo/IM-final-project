@@ -13,10 +13,8 @@ function Dtr() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Retrieve selected branch from local storage
     const selectedBranch = localStorage.getItem('selectedBranch');
     
-    // Fetch employees from API and filter by branch
     fetch('https://vynceianoani.helioho.st/active_staff.php?branch=' + selectedBranch)
       .then((response) => response.json())
       .then((data) => setEmployees(data))
@@ -77,7 +75,7 @@ function Dtr() {
   };
 
   const handleTimeChange = (e, employeeId, type, part) => {
-    const value = e.target.value.replace(/\D/g, ''); // Only digits allowed
+    const value = e.target.value.replace(/\D/g, ''); 
     setEmployees((prevEmployees) =>
       prevEmployees.map((emp) =>
         emp.StaffID === employeeId

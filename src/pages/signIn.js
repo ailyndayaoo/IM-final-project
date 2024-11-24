@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom'; // Add useLocation to the import
+import { useNavigate, useLocation } from 'react-router-dom'; 
 import '../css/signIn.css';
-import '@fortawesome/fontawesome-free/css/all.min.css'; // Import Font Awesome CSS
-import pic1 from '../pictures/pic1.jpg'; // Import the image
+import '@fortawesome/fontawesome-free/css/all.min.css'; 
+import pic1 from '../pictures/pic1.jpg'; 
 import pic3 from '../pictures/pic2.png';
 
 
@@ -12,7 +12,7 @@ const SignIn = () => {
     const [password, setPassword] = useState('');
 
     const navigate = useNavigate();
-    const location = useLocation(); // Use useLocation to access the passed state
+    const location = useLocation(); 
 
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
@@ -24,7 +24,6 @@ const SignIn = () => {
         if (!username || !password) {
             alert('Please input credentials');
         } else if (username === 'admin' && password === 'password') {
-            // Store the selected branch in localStorage
             const selectedBranch = location.state?.selectedBranch;
             localStorage.setItem('selectedBranch', selectedBranch);
             navigate('/home/staff');
@@ -53,7 +52,7 @@ const SignIn = () => {
                         name="username"
                         placeholder="Enter username"
                         value={username}
-                        onChange={(e) => setUsername(e.target.value)} // Update username state
+                        onChange={(e) => setUsername(e.target.value)} 
                         className="enter-username"
                     />
 
@@ -65,7 +64,7 @@ const SignIn = () => {
                             name="password"
                             placeholder="Enter password"
                             value={password}
-                            onChange={(e) => setPassword(e.target.value)} // Update password state
+                            onChange={(e) => setPassword(e.target.value)} 
                         />
                         <button
                             type="button"
@@ -73,9 +72,9 @@ const SignIn = () => {
                             onClick={togglePasswordVisibility}
                         >
                             {passwordVisible ? (
-                                <i className="fas fa-eye-slash"></i> // Font Awesome eye-slash icon
+                                <i className="fas fa-eye-slash"></i>
                             ) : (
-                                <i className="fas fa-eye"></i> // Font Awesome eye icon
+                                <i className="fas fa-eye"></i> 
                             )}
                         </button>
                     </div>

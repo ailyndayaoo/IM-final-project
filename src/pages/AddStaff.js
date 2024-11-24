@@ -15,10 +15,9 @@ function AddStaff({ isEdit = false, refreshStaffList }) {
     Email: '',
     Sex: '',
     ContactNumber: '',
-    Branch: '', // Add branch to staffData
+    Branch: '',
   });
 
-  // Fetch branch name from local storage
   useEffect(() => {
     const branch = localStorage.getItem('selectedBranch');
     if (branch) {
@@ -28,16 +27,16 @@ function AddStaff({ isEdit = false, refreshStaffList }) {
       }));
     }
   }, []);
-
-  // Fetch staff data if in edit mode
+  
   useEffect(() => {
     if (isEdit && staffID) {
-      fetch(`http://vynceianoani.helioho.st/getstaff.php?StaffID=${staffID}`)
+      fetch(`https://vynceianoani.helioho.st/getstaff.php?StaffID=${staffID}`)
         .then((response) => response.json())
         .then((data) => setStaffData(data))
         .catch((error) => console.error('Error fetching staff data:', error));
     }
   }, [isEdit, staffID]);
+  
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -81,8 +80,8 @@ function AddStaff({ isEdit = false, refreshStaffList }) {
     }
 
     const url = isEdit
-      ? 'http://vynceianoani.helioho.st/editstaff.php'
-      : 'http://vynceianoani.helioho.st/addstaff.php';
+      ? 'https://vynceianoani.helioho.st/editstaff.php'
+      : 'https://vynceianoani.helioho.st/addstaff.php';
 
     fetch(url, {
       method: 'POST',
@@ -215,7 +214,7 @@ function AddStaff({ isEdit = false, refreshStaffList }) {
                 className="input-field"
                 value={staffData.Branch}
                 onChange={handleInputChange}
-                readOnly={!!localStorage.getItem('selectedBranch')} // Make readonly if branch is from localStorage
+                readOnly={!!localStorage.getItem('selectedBranch')}
               />
             </div>
           </div>

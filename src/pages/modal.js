@@ -7,9 +7,9 @@ const Modal = ({ isOpen, onClose, onConfirmDelete, isDeleteMode, branchName }) =
   useEffect(() => {
     if (isOpen) {
       if (isDeleteMode) {
-        setNewBranchName(branchName || ''); // Set to the branch name if in delete mode
+        setNewBranchName(branchName || ''); 
       } else {
-        setNewBranchName(''); // Clear input for add mode
+        setNewBranchName(''); 
       }
     }
   }, [isOpen, isDeleteMode, branchName]);
@@ -26,9 +26,9 @@ const Modal = ({ isOpen, onClose, onConfirmDelete, isDeleteMode, branchName }) =
         .then(response => response.json())
         .then(data => {
           if (data.success) {
-            alert(data.success); // Show success message
+            alert(data.success); 
           } else {
-            alert(data.error); // Show error message
+            alert(data.error); 
           }
         })
         .catch(error => {
@@ -36,16 +36,16 @@ const Modal = ({ isOpen, onClose, onConfirmDelete, isDeleteMode, branchName }) =
           alert('Failed to add branch. Please try again.');
         });
 
-      setNewBranchName(''); // Clear the input field
-      onClose(); // Close the modal
+      setNewBranchName(''); 
+      onClose(); 
     } else {
-      alert('Branch name cannot be empty!'); // Alert if the input is empty
+      alert('Branch name cannot be empty!'); 
     }
   };
 
   const handleConfirmDelete = () => {
     onConfirmDelete();
-    onClose(); // Close the modal
+    onClose();
   };
 
   if (!isOpen) return null;

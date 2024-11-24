@@ -1,27 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoneyCheckDollar } from '@fortawesome/free-solid-svg-icons';
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useNavigate } from 'react-router-dom';
 import '../css/payrollfinal.css';
 
 const PayrollFinal = () => {
     const [isDropdownVisible, setDropdownVisible] = useState(false);
-    const [staffData, setStaffData] = useState([]); // State to hold staff data
+    const [staffData, setStaffData] = useState([]); 
     const navigate = useNavigate();
 
-    // Function to fetch staff data from the API
     const fetchStaffData = async () => {
         try {
-            // Retrieve the branch from local storage
             const branch = localStorage.getItem('selectedBranch');
     
-            // Pass the branch as a query parameter in the API request
             const response = await fetch(`https://vynceianoani.helioho.st/getstaff.php?branch=${encodeURIComponent(branch)}`);
             const data = await response.json();
     
-            // Update state with the fetched data
             setStaffData(data);
         } catch (error) {
             console.error('Error fetching staff data:', error);
@@ -29,14 +24,13 @@ const PayrollFinal = () => {
     };
     
 
-    // Fetch staff data on component mount
     useEffect(() => {
         fetchStaffData();
     }, []);
 
     const handleButtonClick = (StaffID, name) => {
         navigate('/home/calculatepayroll', { 
-            state: { StaffID, name }  // Pass the staffID and name as state
+            state: { StaffID, name }  
         });
     };
 
@@ -80,7 +74,7 @@ const PayrollFinal = () => {
                                 </div>
                                 <button
                                     className="action-button"
-                                    onClick={() => handleButtonClick(staff.StaffID, `${staff.Fname} ${staff.Lname}`)} // Pass staffID and name
+                                    onClick={() => handleButtonClick(staff.StaffID, `${staff.Fname} ${staff.Lname}`)} 
                                 >
                                     Payroll
                                 </button>

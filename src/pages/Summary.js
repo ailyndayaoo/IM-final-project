@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faList, faUserGroup, faCodeBranch } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
-import { Line } from 'react-chartjs-2';  
+import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 
 import '../css/summary.css';
 
-// Register chart.js components
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 function Summary() {
@@ -20,12 +19,12 @@ function Summary() {
         const branch = localStorage.getItem('selectedBranch');
         if (branch) {
             setSelectedBranch(branch);
-            fetchStaffData(branch);  // Pass selectedBranch to fetch staff data for the selected branch
+            fetchStaffData(branch);
         }
     }, []);
 
     const fetchStaffData = (branch) => {
-        const url = `https://vynceianoani.helioho.st/total.php?branch=${branch}`;  // Pass branch as query param
+        const url = `https://vynceianoani.helioho.st/total.php?branch=${branch}`;
         fetch(url)
             .then(response => response.json())
             .then(data => setStaffList(data))
@@ -49,11 +48,11 @@ function Summary() {
     let totalDebt = 0;
 
     for (let i = 0; i < staffList.length; i++) {
-      totalDebt += parseFloat(staffList[i].TotalDebt) || 0;
+        totalDebt += parseFloat(staffList[i].TotalDebt) || 0;
     }
-    
+
     totalDebt = totalDebt.toFixed(2);
-    
+
     const data = {
         labels: ['Sales', 'Commission',],
         datasets: [
@@ -147,7 +146,6 @@ function Summary() {
                 </table>
             </div>
 
-            {/* Button to navigate to graph page */}
             <div className="see-graph-button">
                 <button onClick={handleSeeGraph}>See Graph</button>
             </div>

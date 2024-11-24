@@ -15,21 +15,19 @@ function Commission() {
     const [commission, setCommission] = useState(0);
     const [commissionData, setCommissionData] = useState([]);
     const [availableDates, setAvailableDates] = useState([]);
-    const [searchTerm, setSearchTerm] = useState(''); // State for search term
+    const [searchTerm, setSearchTerm] = useState(''); 
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        const storedBranch = localStorage.getItem('selectedBranch'); // Retrieve stored branch from local storage
+        const storedBranch = localStorage.getItem('selectedBranch'); 
     
         if (storedBranch) {
-            // Fetch the staff data with the branch parameter
             fetch(`https://vynceianoani.helioho.st/getstaff2.php?branch=${storedBranch}`)
                 .then(response => response.json())
                 .then(data => setEmployees(data))
                 .catch(error => console.error('Error fetching staff data:', error));
     
-            // Fetch the commission data with the branch parameter
             fetch(`https://vynceianoani.helioho.st/getCommissions.php?branch=${storedBranch}`)
                 .then(response => response.json())
                 .then(data => setCommissionData(data))
@@ -49,7 +47,7 @@ function Commission() {
     const handleEmployeeSelect = (employee) => {
         setSelectedEmployee(employee);
         if (employee && employee.StaffID) {
-            fetchAvailableDates(employee.StaffID); // Fetch available dates when an employee is selected
+            fetchAvailableDates(employee.StaffID); 
         }
     };
 
@@ -68,7 +66,7 @@ function Commission() {
 
     const handleSalesChange = (e) => {
         setSales(e.target.value);
-        setCommission((e.target.value * 0.4).toFixed(2)); // 40% commission calculation
+        setCommission((e.target.value * 0.4).toFixed(2)); 
     };
 
     const handleDateChange = (date) => {
@@ -83,12 +81,11 @@ function Commission() {
 
         const newCommission = {
             staffID: selectedEmployee.StaffID,
-            date: selectedDate.toISOString().split('T')[0], // Format date as YYYY-MM-DD
+            date: selectedDate.toISOString().split('T')[0], 
             total_sales: sales,
             total_commission: commission
         };
 
-        // Send commission data to the backend
         fetch('https://vynceianoani.helioho.st/addCommision.php', {
             method: 'POST',
             headers: {
@@ -100,13 +97,12 @@ function Commission() {
             .then(data => {
                 if (data.success) {
                     alert(data.message);
-                    // Update commissionData and reset form after adding
                     setCommissionData([...commissionData, newCommission]);
                     setSelectedEmployee(null);
                     setSelectedDate(null);
                     setSales('');
                     setCommission(0);
-                    setAvailableDates([]); // Clear available dates after adding commission
+                    setAvailableDates([]); 
                 } else {
                     alert("Error adding commission: " + data.message);
                 }
@@ -114,11 +110,10 @@ function Commission() {
             .catch(error => console.error('Error:', error));
     };
 
-    // Filter commission data based on search input
     const filteredCommissionData = commissionData.filter(item => {
         const nameMatches = item.FullName && item.FullName.toLowerCase().includes(searchTerm.toLowerCase());
-        const dateMatches = item.Date && item.Date.includes(searchTerm); // Match date as a substring
-        return nameMatches || dateMatches; // Return true if either matches
+        const dateMatches = item.Date && item.Date.includes(searchTerm); 
+        return nameMatches || dateMatches; 
     });
 
 
@@ -143,7 +138,6 @@ function Commission() {
                     )}
                 </div>
 
-                {/* Search Bar */}
                 <div className="search-bar-commission-container">
                     <label>Search:</label>
                     <input
@@ -159,13 +153,13 @@ function Commission() {
                     <div>
                         <label>Select Employee:</label>
                         <select
-                            value={selectedEmployee ? `${selectedEmployee.Fname} ${selectedEmployee.Lname}` : ''} // Display full name if selected
+                            value={selectedEmployee ? `${selectedEmployee.Fname} ${selectedEmployee.Lname}` : ''} 
                             onChange={(e) => {
-                                const fullName = e.target.value; // Get selected full name
+                                const fullName = e.target.value; 
                                 const selectedEmp = employees.find(
-                                    (employee) => `${employee.Fname} ${employee.Lname}` === fullName // Match full name to employee object
+                                    (employee) => `${employee.Fname} ${employee.Lname}` === fullName 
                                 );
-                                handleEmployeeSelect(selectedEmp); // Pass the selected employee object
+                                handleEmployeeSelect(selectedEmp); 
                             }}
                             className="employee-select"
                         >
@@ -181,7 +175,7 @@ function Commission() {
                     <div>
                         <label>Select Date:</label>
                         <select
-                            value={selectedDate ? selectedDate.toISOString().split('T')[0] : ''} // Prevent undefined value
+                            value={selectedDate ? selectedDate.toISOString().split('T')[0] : ''} 
                             onChange={(e) => {
                                 const dateStr = e.target.value;
                                 const dateObj = new Date(dateStr);
@@ -193,7 +187,7 @@ function Commission() {
                             {Array.isArray(availableDates) && availableDates.length > 0 ? (
                                 availableDates.map((date, index) => (
                                     <option key={index} value={date}>
-                                        {new Date(date).toLocaleDateString()} {/* Format date as MM/DD/YYYY */}
+                                        {new Date(date).toLocaleDateString()} 
                                     </option>
                                 ))
                             ) : (

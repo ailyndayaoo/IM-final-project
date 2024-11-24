@@ -27,13 +27,13 @@
 
     const handleBranchClick = (branchName) => {
       console.log(`${branchName} branch selected`);
-      localStorage.setItem('selectedBranch', branchName); // Store the selected branch
+      localStorage.setItem('selectedBranch', branchName); 
       navigate('/signIn', { state: { selectedBranch: branchName } });
     };
     
 
     const handleAddBranch = async (branchName) => {
-      if (!branchName) return; // Ensure there's a name to add
+      if (!branchName) return; 
       try {
         await axios.post('http://vynceianoani.helioho.st/branch.php', { name: branchName });
         setBranches([...branches, { name: branchName }]);
@@ -45,10 +45,9 @@
     const handleConfirmDelete = async () => {
       if (!selectedBranch) return;
     
-      console.log(`Deleting branch: ${selectedBranch.name}`); // Log the branch being deleted
+      console.log(`Deleting branch: ${selectedBranch.name}`); 
     
       try {
-        // Adjust the API endpoint to match your PHP delete script
         const response = await fetch(`https://vynceianoani.helioho.st/deleteBranch.php?branch=${encodeURIComponent(selectedBranch.name)}`, {
           method: 'DELETE',
           headers: {
@@ -72,8 +71,8 @@
     const handleRightClick = (e, branch) => {
       e.preventDefault();
       setSelectedBranch(branch);
-      setIsDeleteMode(true); // Set delete mode
-      setIsModalOpen(true); // Show the modal
+      setIsDeleteMode(true); 
+      setIsModalOpen(true); 
     };
 
     return (
@@ -98,7 +97,7 @@
               onClick={() => {
                 setIsModalOpen(true);
                 setIsDeleteMode(false);
-                setSelectedBranch(null); // Reset selected branch
+                setSelectedBranch(null); 
               }}
             >
               Add Branch

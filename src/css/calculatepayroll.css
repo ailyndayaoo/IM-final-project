@@ -5,7 +5,7 @@
   justify-content: flex-start;
   padding: 20px;
   height: 100vh;
-  margin-left: 250px; /* Adjust for the sidebar width */
+  margin-left: 250px;
   text-align: left;
 }
 
@@ -19,8 +19,8 @@
 
 .icon-calculate-payroll {
   position: fixed;
-  font-size: 35px; /* Adjust size as needed */
-  padding: 5px; /* Adjust padding as needed */
+  font-size: 35px;
+  padding: 5px;
   margin-top: 4px;
   margin-left: -10px;
 }
@@ -33,8 +33,8 @@
 
 .scrollable-form-container {
   width: 100%;
-  max-height: 85vh; /* Limit the height for scrolling */
-  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 85vh;
+  overflow-y: auto;
 }
 
 .form-payroll-background {
@@ -44,39 +44,39 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 70%;
   height: 65%;
-  max-height: 65vh; /* Set a maximum height for scrolling */
+  max-height: 65vh;
   margin: 0 auto;
   position: fixed;
   top: 25%;
   left: 58%;
   transform: translateX(-50%);
-  overflow-y: auto; /* Enable vertical scrolling */
-  overflow-x: hidden; /* Disable horizontal scrolling */
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .payroll-columns {
-  display: flex; /* Use Flexbox to arrange columns */
-  width: 100%; /* Ensure full width of parent */
+  display: flex;
+  width: 100%;
 }
 
 .payroll-column {
-  flex: 1; /* Each column will take up equal space */
-  padding: 10px; /* Add padding for spacing */
-  box-sizing: border-box; /* Ensure padding is included in width */
+  flex: 1;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 .name-id-display {
-  margin-bottom: 20px; /* Add space below the name and ID section */
-  text-align: center; /* Center text for better presentation */
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .name-id-display p {
-  margin: 0; /* Remove default margin */
-  font-size: 16px; /* Optional: adjust font size */
+  margin: 0;
+  font-size: 16px;
 }
 
 .commissions-list {
-  margin-top: 20px; /* Add some space before the commission table */
+  margin-top: 20px;
   text-align: left;
 }
 
@@ -86,7 +86,8 @@
   margin-top: 10px;
 }
 
-.commissions-list th, .commissions-list td {
+.commissions-list th,
+.commissions-list td {
   padding: 8px 12px;
   border: 1px solid #ddd;
 }
@@ -113,9 +114,9 @@
 }
 
 .total-commission {
-  margin-top: 20px; /* Add space above the total commission */
-  text-align: center; /* Center the text */
-  font-size: 18px; /* Adjust font size */
+  margin-top: 20px;
+  text-align: center;
+  font-size: 18px;
 }
 
 .save-payroll-button {
@@ -135,7 +136,8 @@
   background: linear-gradient(90deg, #ffdd57, #ff9f1c);
 }
 
-input[type="number"], input[type="text"] {
+input[type="number"],
+input[type="text"] {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
@@ -148,8 +150,10 @@ input[readonly] {
   background-color: #f9f9f9;
 }
 
-input[type="number"]:focus, input[type="text"]:focus {
-  border-color: #4CAF50; /* Green border on focus */
+input[type="number"]:focus,
+input[type="text"]:focus {
+  border-color: #4CAF50;
+  /* Green border on focus */
 }
 
 .total-pay-input {

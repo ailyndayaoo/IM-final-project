@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import '../css/addstaff.css'; // Reusing AddStaff's CSS for consistency
+import '../css/addstaff.css'; 
 
 function EditStaff() {
     const { staffID } = useParams();
@@ -23,7 +23,7 @@ function EditStaff() {
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'success' && data.staff) {
-                    setStaffData(data.staff); // Update with the fetched staff data
+                    setStaffData(data.staff); 
                 } else {
                     alert('Staff not found or inactive.');
                 }
@@ -43,7 +43,7 @@ function EditStaff() {
         const file = e.target.files[0];
         setStaffData({
             ...staffData,
-            Photo: file // Store file object for submission
+            Photo: file 
         });
     };
 
@@ -55,7 +55,6 @@ function EditStaff() {
             formData.append(key, staffData[key]);
         });
         
-        // Debugging: Log the formData entries
         for (let [key, value] of formData.entries()) {
             console.log(key, value);
         }
@@ -66,7 +65,7 @@ function EditStaff() {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data); // Log the response from the server
+                console.log(data); 
                 if (data.status === 'success') {
                     alert('Staff information updated successfully!');
                     navigate('/home/staff');
@@ -166,8 +165,8 @@ function EditStaff() {
                                 className="input-field"
                                 value={staffData.ContactNumber}
                                 onChange={handleChange}
-                                pattern="[0-9]*" // Allow only numbers
-                                maxLength="11" // Limit the input to 11 characters
+                                pattern="[0-9]*" 
+                                maxLength="11" 
                             />
                         </div>
                     </div>

@@ -16,7 +16,6 @@ function CalculateCommission() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Fetch the staff data from the API
         fetch('https://vynceianoani.helioho.st/getstaff.php')
             .then(response => response.json())
             .then(data => setEmployees(data))
@@ -33,7 +32,7 @@ function CalculateCommission() {
 
     const handleEmployeeSelect = (employee) => {
         setSelectedEmployee(employee);
-        fetchAvailableDates(employee.StaffID); // Fetch available dates when an employee is selected
+        fetchAvailableDates(employee.StaffID); 
     };
 
     const fetchAvailableDates = (staffID) => {
@@ -51,7 +50,7 @@ function CalculateCommission() {
 
     const handleSalesChange = (e) => {
         setSales(e.target.value);
-        setCommission((e.target.value * 0.4).toFixed(2)); // 40% commission calculation
+        setCommission((e.target.value * 0.4).toFixed(2)); 
     };
 
     const handleDateChange = (date) => {
@@ -66,12 +65,11 @@ function CalculateCommission() {
 
         const newCommission = {
             staffID: selectedEmployee.StaffID,
-            date: selectedDate.toISOString().split('T')[0], // Format date as YYYY-MM-DD
+            date: selectedDate.toISOString().split('T')[0], 
             total_sales: sales,
             total_commission: commission
         };
 
-        // Send commission data to the backend
         fetch('https://vynceianoani.helioho.st/addCommision.php', {
             method: 'POST',
             headers: {
@@ -83,12 +81,11 @@ function CalculateCommission() {
             .then(data => {
                 if (data.success) {
                     alert(data.message);
-                    // Reset form after adding
                     setSelectedEmployee(null);
                     setSelectedDate(null);
                     setSales('');
                     setCommission(0);
-                    setAvailableDates([]); // Clear available dates after adding commission
+                    setAvailableDates([]); 
                 } else {
                     alert("Error adding commission: " + data.message);
                 }
@@ -102,7 +99,6 @@ function CalculateCommission() {
                 <FontAwesomeIcon icon={faSackDollar} className="icon-commission" beat />
                 <h1>Commission</h1>        
 
-                {/* Add New Commission Section */}
                 <div className="add-commission-container">
                     <div>
                         <label>Select Date:</label>
@@ -114,9 +110,9 @@ function CalculateCommission() {
                                 setSelectedDate(dateObj);
                             }}
                             className="date-select"
-                            disabled={!selectedEmployee} // Disable if no employee is selected
+                            disabled={!selectedEmployee} 
                         >
-                            <option value="" disabled>Select a date</option> {/* This option is now unclickable */}
+                            <option value="" disabled>Select a date</option> 
                             {Array.isArray(availableDates) && availableDates.length > 0 ? (
                                 availableDates.map((date, index) => (
                                     <option key={index} value={date}>
@@ -124,7 +120,7 @@ function CalculateCommission() {
                                     </option>
                                 ))
                             ) : (
-                                <option value="" disabled>No available dates</option> // This is also unclickable
+                                <option value="" disabled>No available dates</option> 
                             )}
                         </select>
 

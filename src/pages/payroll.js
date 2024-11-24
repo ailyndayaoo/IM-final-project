@@ -15,22 +15,20 @@ function Payroll() {
   useEffect(() => {
     const fetchPayrollData = async () => {
       try {
-        // Retrieve the branch from local storage
         const branch = localStorage.getItem('selectedBranch');
-        
-        // Pass the branch as a query parameter to the API
+
         const response = await fetch(`https://vynceianoani.helioho.st/fetchPayrollData.php?branch=${encodeURIComponent(branch)}`);
         const data = await response.json();
-        
+
         setPayrollData(data);
       } catch (error) {
         console.error('Error fetching payroll data:', error);
       }
     };
-  
+
     fetchPayrollData();
   }, []);
-  
+
   const handleProfileClick = () => {
     setIsDropdownVisible(!isDropdownVisible);
   };
@@ -48,26 +46,23 @@ function Payroll() {
   const handleSaveClick = async (index) => {
     const item = payrollData[index];
 
-    // Validate the data before saving
     if (!item.StaffID || !item.dtr_date || !item.payDate) {
       alert('Please fill all the required fields.');
       return;
     }
 
-    // Calculate the total: (Commission + Allowance - Debt)
     const commission = parseFloat(item.total_commission_per_day) || 0;
     const allowance = parseFloat(item.allowance) || 0;
     const debt = parseFloat(item.debt) || 0;
     const total = commission + allowance - debt;
 
-    // Prepare the data to be sent to the server
     const payrollItem = {
       StaffID: item.StaffID,
       Date: item.dtr_date,
       Pay_Date: item.payDate,
       Allowance: allowance,
       Debt: debt,
-      Total: total // Total is now calculated here
+      Total: total
     };
 
     try {
@@ -80,7 +75,7 @@ function Payroll() {
       });
 
       const result = await response.json();
-      if (result.message) { // Adjusted for successful response checking
+      if (result.message) {
         alert('Payroll saved successfully!');
       } else {
         alert('Failed to save payroll. Please try again.');

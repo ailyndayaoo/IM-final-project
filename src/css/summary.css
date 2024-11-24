@@ -10,9 +10,7 @@
 .summary-icon {
     position: fixed;
     font-size: 30px;
-    /* Adjust size as needed */
     padding: 5px;
-    /* Adjust padding as needed */
     margin-top: 8px;
     margin-left: -10px;
 }
@@ -89,21 +87,16 @@
     padding: 20px;
     height: 100vh;
     margin-left: 250px;
-    /* Adjust for the sidebar width */
     text-align: left;
 }
 
 .staff-table-container {
     position: relative;
-    /* Use relative for a scrollable container */
     margin-top: 25%;
     max-height: 45vh;
-    /* Ensure height constraint for scrollability */
     overflow-y: auto;
-    /* Enable vertical scrolling */
     width: 100%;
     padding: 10px;
-    /* Optional: Add some padding if needed */
     margin-left: -1%;
 }
 

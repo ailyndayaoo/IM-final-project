@@ -8,7 +8,6 @@ body {
   background-color: #ffffff;
   padding-top: 20px;
   position: fixed;
-  /* Keep the sidebar fixed on the left */
 }
 
 .sidebar ul {
@@ -35,14 +34,11 @@ body {
 
 .sidebar ul li a.active {
   background-color: #e6ddab;
-  /* Highlighted background color */
   font-weight: bold;
-  /* Optional: make the text bold */
 }
 
 .icon-sidebar {
   margin-right: 20px;
-  /* Adjust this value as needed */
   color: #3f3f38;
 }
 
@@ -51,11 +47,8 @@ body {
   margin-top: 1%;
   margin-left: 8%;
   transform: scale(1.5);
-  /* Increases the size of the icon without affecting layout */
   display: inline-block;
-  /* Ensures that the transform doesn't affect the flow of the layout */
   vertical-align: middle;
-  /* Aligns the icon properly with the text */
 }
 
 .total-staff-icon2 {
@@ -63,17 +56,13 @@ body {
   margin-top: 1%;
   margin-left: 12%;
   transform: scale(1.2);
-  /* Increases the size of the icon without affecting layout */
   display: inline-block;
-  /* Ensures that the transform doesn't affect the flow of the layout */
   vertical-align: middle;
-  /* Aligns the icon properly with the text */
 }
 
 
 .logout-icon {
   margin-left: 8px;
-  /* Adjust this value to control the spacing */
 }
 
 
@@ -92,24 +81,16 @@ body {
   margin-top: -3%;
   display: flex;
   flex-direction: column;
-  /* Arrange items in a column */
   align-items: flex-start;
-  /* Align items to the left */
   justify-content: flex-start;
-  /* Align items to the top */
   padding: 20px;
-  /* Add padding for spacing */
   height: 100vh;
-  /* Full viewport height */
   margin-left: 250px;
-  /* Adjust for the sidebar width */
   text-align: left;
-  /* Align text to the left */
 }
 
 .welcome-container h1 {
   position: fixed;
-  /* Position relative to allow positioning of the icon inside */
   margin-top: 1%;
   font-size: 2.5rem;
   font-weight: bold;
@@ -117,17 +98,13 @@ body {
 
 .date-container {
   margin-top: 4%;
-  /* Add some spacing between the welcome text and the date */
 
 }
 
 .date-container p {
   font-size: 1rem;
-  /* Smaller font size for the date */
   color: #000000;
-  /* Subtle color for the date */
   position: fixed;
-  /* Position relative to allow positioning of the icon inside */
 
 }
 
@@ -147,40 +124,27 @@ body {
 .branch-container h1 {
   position: fixed;
   margin: 0;
-  /* Remove default margin */
   padding: 10px;
-  /* Space inside the element */
 }
 
 .branch-container p {
   position: fixed;
   margin: 0;
-  /* Remove default margin */
   padding: 10px;
-  /* Space inside the element */
   font-size: 1rem;
-  /* Smaller font size for the date */
   margin-top: 3.5%;
 
 }
 
 .totalstaff-container {
   margin-top: 10%;
-  /* Space above the container */
   padding: 10px;
-  /* Space inside the container */
   border: 2px solid #333;
-  /* Border around the container */
   border-radius: 20px;
-  /* Rounded corners */
   background-color: rgb(247, 233, 201);
-  /* Background color for the container */
   width: 20%;
-  /* Make the container take up the full width of its parent */
   box-sizing: border-box;
-  /* Include padding and border in total width and height */
   position: fixed;
-  /* Position relative to allow positioning of the icon inside */
   height: 15%;
   margin-left: 21%;
 
@@ -189,11 +153,8 @@ body {
 .totalstaff-container p {
   position: fixed;
   margin: 0;
-  /* Remove default margin */
   padding: 10px;
-  /* Space inside the element */
   font-size: 1rem;
-  /* Smaller font size for the date */
   margin-top: 3.5%;
 
 
@@ -202,9 +163,7 @@ body {
 .totalstaff-container h1 {
   position: fixed;
   margin: 0;
-  /* Remove default margin */
   padding: 10px;
-  /* Space inside the element */
 
 
 }
@@ -212,10 +171,8 @@ body {
 
 .search-ble-container {
   margin-bottom: 20px;
-  /* Space between the search bar and other content */
   display: flex;
   justify-content: center;
-  /* Center the search bar horizontally */
 }
 
 .search-bar-ble-container {
@@ -224,7 +181,6 @@ body {
   left: 65%;
   width: 20%;
   z-index: 500;
-  /* Ensure it’s below the button */
 }
 
 .search-bar-ble {
@@ -233,16 +189,13 @@ body {
   border-radius: 4px;
   font-size: 1rem;
   position: fixed;
-  /* Ensure it doesn’t overlap other elements */
 }
 
 
 .search-icon {
   position: absolute;
   right: 10%;
-  /* Adjust if needed */
   top: 50%;
-  /* Adjust if needed */
   transform: translateY(-50%);
   color: #000000;
 }
@@ -250,45 +203,33 @@ body {
 
 .profile2-container {
   position: fixed;
-  /* Position the profile container absolutely */
   right: 30px;
-  /* Space from the right edge */
   display: flex;
   align-items: center;
-  /* Align items vertically */
   margin-top: -2%;
 }
 
 .profile-icon {
   font-size: 1.5rem;
-  /* Size of the profile icon */
   color: #333;
-  /* Color of the profile icon */
   margin-right: -2px;
-  /* Space between the icon and the text */
   margin-top: -20%;
 }
 
 .profile2-label {
   font-size: 1rem;
-  /* Font size for the profile label */
   color: #333;
-  /* Color of the profile label */
   margin-top: 30%;
   margin-left: 15%;
   display: flex;
   align-items: center;
   cursor: pointer;
-  /* Change cursor to hand on hover */
 }
 
 .arrow-icon {
   font-size: 1rem;
-  /* Font size for the arrow icon */
   margin-left: 10px;
-  /* Space between the text and the arrow */
   color: #333;
-  /* Color of the arrow icon */
 }
 
 
@@ -297,26 +238,17 @@ body {
 .dropdown-menu {
   position: absolute;
   top: 50%;
-  /* Position below the profile label */
   min-width: 120px;
-  /* Optional: set a minimum width */
   padding: 0;
-  /* Remove any padding around the dropdown */
 }
 
 .dropdown-item {
   font-size: 0.8rem;
-  /* Smaller font size for the Logout text */
   padding: 8px 12px;
-  /* Adjust padding for better spacing */
   cursor: pointer;
-  /* Change cursor to hand on hover */
   background-color: #f8f9fa;
-  /* Light background color for the item */
   border-radius: 4px;
-  /* Rounded corners for the background */
   text-align: center;
-  /* Center-align the text */
 }
 
 
@@ -335,7 +267,6 @@ body {
   top: 27%;
   right: 35px;
   z-index: 1000;
-  /* Ensure the button is on top */
 }
 
 
@@ -346,24 +277,18 @@ body {
 
 .staff-table-container {
   position: relative;
-  /* Use relative for a scrollable container */
   margin-top: 25%;
   max-height: 45vh;
-  /* Ensure height constraint for scrollability */
   overflow-y: auto;
-  /* Enable vertical scrolling */
   width: 100%;
   padding: 10px;
-  /* Optional: Add some padding if needed */
   margin-left: -1%;
 }
 
 .staff-table-container h2 {
 
   margin-top: -3%;
-  /* Space between the header and the table */
   position: fixed;
-  /* Ensure it's not affected by fixed positioning */
 }
 
 .staff-table {
@@ -387,12 +312,9 @@ body {
 
 .actions-column {
   max-width: 120px;
-  /* Adjust width as needed */
   overflow: auto;
-  /* Allow scrolling if content is too large */
 }
 
-/* Add styles for delete button */
 .delete-button {
   background-color: #e74c3c;
   color: white;
