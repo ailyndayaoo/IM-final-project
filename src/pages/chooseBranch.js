@@ -35,7 +35,7 @@
     const handleAddBranch = async (branchName) => {
       if (!branchName) return; 
       try {
-        await axios.post('http://vynceianoani.helioho.st/branch.php', { name: branchName });
+        await axios.post('https://vynceianoani.helioho.st/branch.php', { name: branchName });
         setBranches([...branches, { name: branchName }]);
       } catch (error) {
         console.error('Error adding branch:', error);
